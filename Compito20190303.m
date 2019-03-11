@@ -28,10 +28,7 @@ step = ( max(x) - min(x) ) / max(size(x));
 f = [];
 f(1) = valore_iniziale;
 for i = 2:1:max(size(x))
-  % Calcolo il valore "Reale"
-  f(i) = f(i - 1) * ( a + 1 ) + u
-  % Applico il riscalamento
-  f(i) = ( f(i) - f(i-1) ) * step + f(i-1)
+  f(i) = f(i-1) + ( a * f(i - 1) + u ) * step;
 endfor
 
 % Plot
@@ -47,3 +44,6 @@ maxError = max(error);
 plot (x, f, x, prof)
 legend('My solution','Actual solution')
 title('Approximation of d/dx = ax + u')
+
+meanError
+maxError
